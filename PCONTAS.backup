@@ -1,0 +1,195 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.4.0
+-- Dumped by pg_dump version 9.4.0
+-- Started on 2015-09-17 10:31:36
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 347 (class 1259 OID 175595)
+-- Name: pcontas; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE pcontas (
+    id integer NOT NULL,
+    cia_id bigint NOT NULL,
+    pai_id bigint,
+    codigo bigint,
+    descricao character varying(200),
+    created_at date,
+    updated_at date
+);
+
+
+ALTER TABLE pcontas OWNER TO postgres;
+
+--
+-- TOC entry 346 (class 1259 OID 175593)
+-- Name: pcontas_id_seq1; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE pcontas_id_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE pcontas_id_seq1 OWNER TO postgres;
+
+--
+-- TOC entry 2485 (class 0 OID 0)
+-- Dependencies: 346
+-- Name: pcontas_id_seq1; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE pcontas_id_seq1 OWNED BY pcontas.id;
+
+
+--
+-- TOC entry 2359 (class 2604 OID 175598)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY pcontas ALTER COLUMN id SET DEFAULT nextval('pcontas_id_seq1'::regclass);
+
+
+--
+-- TOC entry 2480 (class 0 OID 175595)
+-- Dependencies: 347
+-- Data for Name: pcontas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY pcontas (id, cia_id, pai_id, codigo, descricao, created_at, updated_at) FROM stdin;
+13	3	\N	1	Ativo	\N	\N
+14	3	\N	2	Passivo	\N	\N
+15	3	13	1	Ativo Circulante	\N	\N
+17	3	15	1	Caixa	\N	\N
+18	3	16	1	Obrigações	\N	\N
+20	3	\N	3	Receita	\N	\N
+21	3	\N	4	Despesa	\N	\N
+22	3	21	1	Fornecedores	\N	\N
+23	3	20	1	Receita Bruta	\N	\N
+24	3	23	1	Venda de Mercadorias	\N	\N
+16	3	14	1	Passivo Circulante	\N	2015-09-16
+26	4	\N	1	Ativo	\N	\N
+27	4	\N	2	Passivo	\N	\N
+28	4	26	1	Ativo Circulante	\N	\N
+29	4	27	1	Passivo Circulante	\N	\N
+30	4	28	1	Caixa	\N	\N
+31	4	29	1	Obrigações	\N	\N
+32	4	35	1	Geral	\N	\N
+33	4	\N	3	Receita	\N	\N
+34	4	\N	4	Despesa	\N	\N
+35	4	34	1	Fornecedores	\N	\N
+36	4	33	1	Receita Bruta	\N	\N
+37	4	36	1	Venda de Mercadorias	\N	\N
+38	8	\N	1	Ativo	\N	\N
+39	8	\N	2	Passivo	\N	\N
+40	8	38	1	Ativo Circulante	\N	\N
+41	8	39	1	Passivo Circulante	\N	\N
+42	8	40	1	Caixa	\N	\N
+43	8	41	1	Obrigações	\N	\N
+44	8	47	1	Geral	\N	\N
+45	8	\N	3	Receita	\N	\N
+46	8	\N	4	Despesa	\N	\N
+47	8	46	1	Fornecedores	\N	\N
+48	8	45	1	Receita Bruta	\N	\N
+49	8	48	1	Venda de Mercadorias	\N	\N
+19	3	22	1	Despesas Gerais	\N	2015-09-17
+51	20	\N	1	Ativo	\N	\N
+52	20	\N	2	Passivo	\N	\N
+53	20	51	1	Ativo Circulante	\N	\N
+54	20	52	1	Passivo Circulante	\N	\N
+55	20	53	1	Caixa	\N	\N
+56	20	54	1	Obrigações	\N	\N
+57	20	\N	3	Receita	\N	\N
+58	20	\N	4	Despesa	\N	\N
+59	20	58	1	Fornecedores	\N	\N
+60	20	57	1	Receita Bruta	\N	\N
+61	20	60	1	Venda de Mercadorias	\N	\N
+62	20	59	1	Despesas Gerais	\N	\N
+\.
+
+
+--
+-- TOC entry 2486 (class 0 OID 0)
+-- Dependencies: 346
+-- Name: pcontas_id_seq1; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('pcontas_id_seq1', 62, true);
+
+
+--
+-- TOC entry 2362 (class 2606 OID 175600)
+-- Name: pk_pcontas; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY pcontas
+    ADD CONSTRAINT pk_pcontas PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2360 (class 1259 OID 175601)
+-- Name: pcontas_pk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX pcontas_pk ON pcontas USING btree (id);
+
+
+--
+-- TOC entry 2363 (class 1259 OID 175603)
+-- Name: reference_233_fk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX reference_233_fk ON pcontas USING btree (pai_id);
+
+
+--
+-- TOC entry 2364 (class 1259 OID 175602)
+-- Name: reference_46_fk; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX reference_46_fk ON pcontas USING btree (cia_id);
+
+
+--
+-- TOC entry 2366 (class 2606 OID 175629)
+-- Name: fk_pcontas_reference_companhi; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY pcontas
+    ADD CONSTRAINT fk_pcontas_reference_companhi FOREIGN KEY (cia_id) REFERENCES companhias(id);
+
+
+--
+-- TOC entry 2365 (class 2606 OID 175624)
+-- Name: fk_pcontas_reference_pcontas; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY pcontas
+    ADD CONSTRAINT fk_pcontas_reference_pcontas FOREIGN KEY (pai_id) REFERENCES pcontas(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+-- Completed on 2015-09-17 10:31:36
+
+--
+-- PostgreSQL database dump complete
+--
+
